@@ -772,6 +772,10 @@ const track = document.getElementById('reviewsTrack');
 const cards = track.querySelectorAll('.review-card');
 const reviewsWrap = document.querySelector('.reviews-track-wrap');
 let revIdx = 0;
+let touchStartX = 0;
+let touchStartY = 0;
+let touchDeltaX = 0;
+let touchDeltaY = 0;
 const maxRevIdx = () => Math.max(cards.length - 1, 0);
 const cardGap = () => {
   const styles = window.getComputedStyle(track);
@@ -784,40 +788,40 @@ function updateRev() {
 function clampRevIdx() {
   revIdx = Math.min(Math.max(revIdx, 0), maxRevIdx());
 }
-document.getElementById('revNext').addEventListener('click', () => {
-  revIdx += 1;
+function moveReviews(direction) {
+  revIdx += direction;
   clampRevIdx();
   updateRev();
-});
-document.getElementById('revPrev').addEventListener('click', () => {
-  revIdx -= 1;
-  clampRevIdx();
-  updateRev();
-});
+}
+document.getElementById('revNext').addEventListener('click', () => moveReviews(1));
+document.getElementById('revPrev').addEventListener('click', () => moveReviews(-1));
 
 // Touch swipe for reviews
-let touchStartX = 0;
-let touchDeltaX = 0;
-track.addEventListener('touchstart', e => {
+function onReviewTouchStart(e) {
   touchStartX = e.touches[0].clientX;
+  touchStartY = e.touches[0].clientY;
   touchDeltaX = 0;
-}, {passive:true});
-track.addEventListener('touchmove', e => {
+  touchDeltaY = 0;
+}
+function onReviewTouchMove(e) {
   touchDeltaX = e.touches[0].clientX - touchStartX;
-}, {passive:true});
-track.addEventListener('touchend', () => {
-  if (Math.abs(touchDeltaX) > 40) {
-    if (touchDeltaX < 0) revIdx += 1;
-    else revIdx -= 1;
-    clampRevIdx();
-    updateRev();
+  touchDeltaY = e.touches[0].clientY - touchStartY;
+}
+function onReviewTouchEnd() {
+  if (Math.abs(touchDeltaX) > 40 && Math.abs(touchDeltaX) > Math.abs(touchDeltaY)) {
+    moveReviews(touchDeltaX < 0 ? 1 : -1);
   }
-});
+}
+if (reviewsWrap) {
+  reviewsWrap.addEventListener('touchstart', onReviewTouchStart, {passive:true});
+  reviewsWrap.addEventListener('touchmove', onReviewTouchMove, {passive:true});
+  reviewsWrap.addEventListener('touchend', onReviewTouchEnd, {passive:true});
+  updateRev();
+}
 window.addEventListener('resize', () => {
   clampRevIdx();
   updateRev();
 }, {passive:true});
-if (reviewsWrap) updateRev();
 
 // ── SERVICES TABS ──
 const tabBtns = document.querySelectorAll('.tab-btn');
