@@ -267,7 +267,7 @@
   }
   .rev-nav-btn:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
   .reviews-track-wrap { overflow: hidden; }
-  .reviews-track { display: flex; gap: 24px; transition: transform .5s cubic-bezier(.25,.46,.45,.94); will-change: transform; }
+  .reviews-track { display: flex; gap: 24px; transition: transform .5s cubic-bezier(.25,.46,.45,.94); will-change: transform; touch-action: pan-y; }
   .review-card {
     min-width: 380px; width: 380px; background: #fff; border-radius: 24px; padding: 32px;
     border: 1.5px solid rgba(107,90,78,.08); flex-shrink: 0;
@@ -770,27 +770,54 @@ document.querySelectorAll('.counters-strip, #hero .hero-stats').forEach(el => co
 // ── REVIEWS CAROUSEL ──
 const track = document.getElementById('reviewsTrack');
 const cards = track.querySelectorAll('.review-card');
+const reviewsWrap = document.querySelector('.reviews-track-wrap');
 let revIdx = 0;
-const cardW = () => cards[0].offsetWidth + 24;
+const maxRevIdx = () => Math.max(cards.length - 1, 0);
+const cardGap = () => {
+  const styles = window.getComputedStyle(track);
+  return parseFloat(styles.columnGap || styles.gap || '24') || 24;
+};
+const cardW = () => cards[0].getBoundingClientRect().width + cardGap();
 function updateRev() {
   track.style.transform = `translateX(-${revIdx * cardW()}px)`;
 }
+function clampRevIdx() {
+  revIdx = Math.min(Math.max(revIdx, 0), maxRevIdx());
+}
 document.getElementById('revNext').addEventListener('click', () => {
-  revIdx = Math.min(revIdx + 1, cards.length - 1);
+  revIdx += 1;
+  clampRevIdx();
   updateRev();
 });
 document.getElementById('revPrev').addEventListener('click', () => {
-  revIdx = Math.max(revIdx - 1, 0);
+  revIdx -= 1;
+  clampRevIdx();
   updateRev();
 });
 
 // Touch swipe for reviews
 let touchStartX = 0;
-track.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, {passive:true});
-track.addEventListener('touchend', e => {
-  const dx = touchStartX - e.changedTouches[0].clientX;
-  if (Math.abs(dx) > 50) { dx > 0 ? document.getElementById('revNext').click() : document.getElementById('revPrev').click(); }
+let touchDeltaX = 0;
+track.addEventListener('touchstart', e => {
+  touchStartX = e.touches[0].clientX;
+  touchDeltaX = 0;
+}, {passive:true});
+track.addEventListener('touchmove', e => {
+  touchDeltaX = e.touches[0].clientX - touchStartX;
+}, {passive:true});
+track.addEventListener('touchend', () => {
+  if (Math.abs(touchDeltaX) > 40) {
+    if (touchDeltaX < 0) revIdx += 1;
+    else revIdx -= 1;
+    clampRevIdx();
+    updateRev();
+  }
 });
+window.addEventListener('resize', () => {
+  clampRevIdx();
+  updateRev();
+}, {passive:true});
+if (reviewsWrap) updateRev();
 
 // ── SERVICES TABS ──
 const tabBtns = document.querySelectorAll('.tab-btn');
