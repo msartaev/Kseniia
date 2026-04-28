@@ -340,6 +340,7 @@
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
       scrollbar-width: none;
+      -ms-overflow-style: none;
       border-radius: 24px;
       padding: 6px;
     }
@@ -350,7 +351,7 @@
     .month-steps { grid-template-columns: 1fr; }
     .reviews-header { align-items: flex-start; flex-direction: column; margin-bottom: 28px; }
     .reviews-nav { width: 100%; justify-content: flex-start; }
-    .review-card { min-width: 300px; padding: 24px; }
+    .review-card { min-width: calc(100vw - 80px); padding: 24px; }
     .review-text { font-size: .89rem; line-height: 1.65; word-break: break-word; overflow-wrap: anywhere; }
     .faq-grid { grid-template-columns: 1fr; gap: 32px; }
     .faq-cta-block { padding: 28px 24px; }
