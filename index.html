@@ -266,12 +266,14 @@
     font-size: 1.2rem; color: var(--mid); transition: background .2s, border-color .2s, color .2s;
   }
   .rev-nav-btn:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
-  .reviews-track-wrap { overflow: hidden; }
-  .reviews-track { display: flex; gap: 24px; transition: transform .5s cubic-bezier(.25,.46,.45,.94); will-change: transform; touch-action: pan-y; }
+  .reviews-track-wrap { overflow-x: auto; overflow-y: hidden; -webkit-overflow-scrolling: touch; scrollbar-width: none; scroll-snap-type: x mandatory; }
+  .reviews-track-wrap::-webkit-scrollbar { display: none; }
+  .reviews-track { display: flex; gap: 24px; touch-action: pan-y; }
   .review-card {
     min-width: 380px; width: 380px; background: #fff; border-radius: 24px; padding: 32px;
     border: 1.5px solid rgba(107,90,78,.08); flex-shrink: 0;
     transition: transform .3s, box-shadow .3s;
+    scroll-snap-align: start;
   }
   .review-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,.08); }
   .review-stars { color: var(--accent); font-size: 1rem; letter-spacing: 2px; margin-bottom: 16px; }
@@ -771,57 +773,17 @@ document.querySelectorAll('.counters-strip, #hero .hero-stats').forEach(el => co
 const track = document.getElementById('reviewsTrack');
 const cards = track.querySelectorAll('.review-card');
 const reviewsWrap = document.querySelector('.reviews-track-wrap');
-let revIdx = 0;
-let touchStartX = 0;
-let touchStartY = 0;
-let touchDeltaX = 0;
-let touchDeltaY = 0;
-const maxRevIdx = () => Math.max(cards.length - 1, 0);
 const cardGap = () => {
   const styles = window.getComputedStyle(track);
   return parseFloat(styles.columnGap || styles.gap || '24') || 24;
 };
 const cardW = () => cards[0].getBoundingClientRect().width + cardGap();
-function updateRev() {
-  track.style.transform = `translateX(-${revIdx * cardW()}px)`;
+function scrollReviews(direction) {
+  if (!reviewsWrap) return;
+  reviewsWrap.scrollBy({ left: direction * cardW(), behavior: 'smooth' });
 }
-function clampRevIdx() {
-  revIdx = Math.min(Math.max(revIdx, 0), maxRevIdx());
-}
-function moveReviews(direction) {
-  revIdx += direction;
-  clampRevIdx();
-  updateRev();
-}
-document.getElementById('revNext').addEventListener('click', () => moveReviews(1));
-document.getElementById('revPrev').addEventListener('click', () => moveReviews(-1));
-
-// Touch swipe for reviews
-function onReviewTouchStart(e) {
-  touchStartX = e.touches[0].clientX;
-  touchStartY = e.touches[0].clientY;
-  touchDeltaX = 0;
-  touchDeltaY = 0;
-}
-function onReviewTouchMove(e) {
-  touchDeltaX = e.touches[0].clientX - touchStartX;
-  touchDeltaY = e.touches[0].clientY - touchStartY;
-}
-function onReviewTouchEnd() {
-  if (Math.abs(touchDeltaX) > 40 && Math.abs(touchDeltaX) > Math.abs(touchDeltaY)) {
-    moveReviews(touchDeltaX < 0 ? 1 : -1);
-  }
-}
-if (reviewsWrap) {
-  reviewsWrap.addEventListener('touchstart', onReviewTouchStart, {passive:true});
-  reviewsWrap.addEventListener('touchmove', onReviewTouchMove, {passive:true});
-  reviewsWrap.addEventListener('touchend', onReviewTouchEnd, {passive:true});
-  updateRev();
-}
-window.addEventListener('resize', () => {
-  clampRevIdx();
-  updateRev();
-}, {passive:true});
+document.getElementById('revNext').addEventListener('click', () => scrollReviews(1));
+document.getElementById('revPrev').addEventListener('click', () => scrollReviews(-1));
 
 // ── SERVICES TABS ──
 const tabBtns = document.querySelectorAll('.tab-btn');
