@@ -336,26 +336,44 @@
     .counters-strip { grid-template-columns: repeat(2,1fr); padding: 50px 24px; }
     .services-grid { grid-template-columns: 1fr; }
     .services-tabs {
-      width: 100%;
+      width: calc(100vw - 48px);
+      max-width: 100%;
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
       scrollbar-width: none;
       border-radius: 24px;
       padding: 6px;
+      scroll-snap-type: x proximity;
     }
     .services-tabs::-webkit-scrollbar { display: none; }
-    .tab-btn { flex: 0 0 auto; min-height: 44px; }
-    .service-card { padding: 28px 24px; }
+    .tab-btn { flex: 0 0 auto; min-height: 44px; scroll-snap-align: start; }
+    .service-card { padding: 24px 20px; border-radius: 20px; }
     .service-card.month { grid-template-columns: 1fr; gap: 24px; }
     .month-steps { grid-template-columns: 1fr; }
     .reviews-header { align-items: flex-start; flex-direction: column; margin-bottom: 28px; }
     .reviews-nav { width: 100%; justify-content: flex-start; }
-    .review-card { min-width: calc(100vw - 48px); padding: 24px; }
-    .review-text { font-size: .89rem; line-height: 1.65; word-break: break-word; overflow-wrap: anywhere; }
+    .reviews-track-wrap { overflow: visible; }
+    .reviews-track { gap: 16px; }
+    .review-card {
+      min-width: calc(100vw - 64px);
+      width: calc(100vw - 64px);
+      max-width: calc(100vw - 64px);
+      padding: 22px 18px;
+      border-radius: 20px;
+    }
+    .review-text {
+      font-size: .89rem;
+      line-height: 1.65;
+      white-space: normal;
+      word-break: break-word;
+      overflow-wrap: anywhere;
+      max-width: 100%;
+    }
     .faq-grid { grid-template-columns: 1fr; gap: 32px; }
     .faq-cta-block { padding: 28px 24px; }
-    #cta { padding: 80px 24px 110px; }
-    footer { flex-direction: column; gap: 12px; padding: 30px 24px calc(30px + env(safe-area-inset-bottom, 0)); }
+    #reviews, #services, #faq { padding-bottom: 120px; }
+    #cta { padding: 80px 24px 130px; }
+    footer { flex-direction: column; gap: 12px; padding: 30px 24px calc(44px + env(safe-area-inset-bottom, 0)); }
   }
 </style>
 </head>
