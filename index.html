@@ -20,7 +20,7 @@
   }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
-  body { background: var(--bg); color: var(--dark); font-family: var(--sans); overflow-x: hidden; }
+  body { background: var(--bg); color: var(--dark); font-family: var(--sans); overflow-x: hidden; padding-bottom: env(safe-area-inset-bottom, 0); }
 
   /* ── NAV ── */
   nav {
@@ -257,7 +257,7 @@
 
   /* ── REVIEWS ── */
   #reviews { background: var(--bg2); overflow: hidden; }
-  .reviews-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 50px; }
+  .reviews-header { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; margin-bottom: 50px; }
   .reviews-nav { display: flex; gap: 10px; }
   .rev-nav-btn {
     width: 48px; height: 48px; border-radius: 50%; border: 1.5px solid rgba(107,90,78,.2);
@@ -271,6 +271,7 @@
     min-width: 380px; background: #fff; border-radius: 24px; padding: 32px;
     border: 1.5px solid rgba(107,90,78,.08); flex-shrink: 0;
     transition: transform .3s, box-shadow .3s;
+    overflow: hidden;
   }
   .review-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,.08); }
   .review-stars { color: var(--accent); font-size: 1rem; letter-spacing: 2px; margin-bottom: 16px; }
@@ -324,19 +325,37 @@
     nav { padding: 20px 24px; }
     nav.scrolled { padding: 14px 24px; }
     .nav-links { display: none; }
-    #hero { grid-template-columns: 1fr; padding: 100px 24px 60px; }
+    #hero { grid-template-columns: 1fr; padding: 100px 24px 60px; gap: 32px; }
+    .hero-content { display: flex; flex-direction: column; }
     .hero-photo-wrap { order: -1; }
     .hero-photo { max-width: 320px; }
-    section { padding: 70px 24px; }
+    .hero-stats { gap: 20px; flex-wrap: wrap; }
+    section { padding: 70px 24px; scroll-margin-top: 84px; }
     .pain-grid { grid-template-columns: 1fr; }
-    .about-grid { grid-template-columns: 1fr; }
+    .about-grid { grid-template-columns: 1fr; gap: 40px; }
     .counters-strip { grid-template-columns: repeat(2,1fr); padding: 50px 24px; }
     .services-grid { grid-template-columns: 1fr; }
-    .service-card.month { grid-template-columns: 1fr; }
-    .review-card { min-width: 300px; }
-    .faq-grid { grid-template-columns: 1fr; }
-    #cta { padding: 80px 24px; }
-    footer { flex-direction: column; gap: 12px; padding: 30px 24px; }
+    .services-tabs {
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      border-radius: 24px;
+      padding: 6px;
+    }
+    .services-tabs::-webkit-scrollbar { display: none; }
+    .tab-btn { flex: 0 0 auto; min-height: 44px; }
+    .service-card { padding: 28px 24px; }
+    .service-card.month { grid-template-columns: 1fr; gap: 24px; }
+    .month-steps { grid-template-columns: 1fr; }
+    .reviews-header { align-items: flex-start; flex-direction: column; margin-bottom: 28px; }
+    .reviews-nav { width: 100%; justify-content: flex-start; }
+    .review-card { min-width: calc(100vw - 48px); padding: 24px; }
+    .review-text { font-size: .89rem; line-height: 1.65; word-break: break-word; overflow-wrap: anywhere; }
+    .faq-grid { grid-template-columns: 1fr; gap: 32px; }
+    .faq-cta-block { padding: 28px 24px; }
+    #cta { padding: 80px 24px 110px; }
+    footer { flex-direction: column; gap: 12px; padding: 30px 24px calc(30px + env(safe-area-inset-bottom, 0)); }
   }
 </style>
 </head>
