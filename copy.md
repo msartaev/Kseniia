@@ -1,6 +1,6 @@
 # Copy · `site/index.html`
 
-Извлечено из `site/index.html` SHA-256 `ace4600866265dc44abd549eebb359b8e4ad2551cd471bbb1fa417e4f3a12919`.
+Текст синхронизирован с `site/index.html` SHA-256 `59d4e4aa30b4eaf38eda9be70cce31644654839ea9a1af18b7edd9764626f92a`.
 
 ## Метаданные
 
