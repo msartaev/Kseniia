@@ -35,8 +35,7 @@ for (const [width, height, mode] of [
       displayHeight: Math.round(photo.height),
       fit: getComputedStyle(portrait).objectFit,
       alt: portrait.alt,
-      link: link.getAttribute('href'),
-      linkVisible: link.getBoundingClientRect().width > 0,
+      linkAbsent: link === null,
       overflow: document.documentElement.scrollWidth > innerWidth,
       hiddenContent: [...document.querySelectorAll('.me .reveal')].filter(e =>
         Number(getComputedStyle(e).opacity) === 0 &&
@@ -47,8 +46,7 @@ for (const [width, height, mode] of [
   });
   const good = metrics.imageWidth === 853 && metrics.imageHeight === 1280 &&
     metrics.displayWidth >= 280 && metrics.fit === 'cover' &&
-    metrics.alt === 'Ксения Галанина' && metrics.linkVisible &&
-    metrics.link === 'https://t.me/zozhno_vozmozhno' && !metrics.overflow &&
+    metrics.alt === 'Ксения Галанина' && metrics.linkAbsent && !metrics.overflow &&
     !errors.length && metrics.hiddenContent === 0 &&
     (mode !== 'reduce' || metrics.animations === 0);
   console.log(JSON.stringify({ viewport: `${width}x${height}`, mode, pass: good, ...metrics, errors }));

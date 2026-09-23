@@ -16,11 +16,12 @@ for (const [width, height] of [[320, 740], [390, 844], [768, 1024], [1440, 900]]
     return {
       sectionHeight: Math.round(section.getBoundingClientRect().height),
       horizontalOverflow: document.documentElement.scrollWidth > innerWidth,
-      linkVisible: link.getBoundingClientRect().width > 0,
+      linkAbsent: link === null,
       portraitLoaded: document.querySelector('.me-photo img').naturalWidth > 0,
     };
   });
   console.log(`${width}x${height}`, metrics);
+  if (!metrics.linkAbsent) process.exitCode = 1;
   await page.close();
 }
 await browser.close();

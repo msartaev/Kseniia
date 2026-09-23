@@ -24,7 +24,7 @@ const r = await page.evaluate(() => {
   out.imgCount = document.querySelectorAll('img').length;
   out.imgVisible = [...document.querySelectorAll('img')].map(i => ({ srcStart: i.src.slice(0, 40), width: i.naturalWidth, complete: i.complete }));
   out.meText = document.querySelector('.me-copy p')?.textContent.trim();
-  out.meLink = document.querySelector('.me-link')?.getAttribute('href');
+  out.meLinkAbsent = document.querySelector('.me-link') === null;
   out.fontsCss = [...document.querySelectorAll('style')].map(s => s.textContent.slice(0, 80));
   out.outsideReqs = [];  // filled from outside
   return out;
@@ -37,7 +37,8 @@ console.log('FAQ details:', r.faq);
 console.log('Reveal opacities (без JS):', r.revealOpacities.length, 'элементов, мин =', Math.min(...r.revealOpacities.map(Number)));
 console.log('IMG count:', r.imgCount, 'visible:', r.imgVisible);
 console.log('Personal portrait natural width:', r.meImgNat);
-console.log('Personal block:', r.meText, r.meLink);
+console.log('Personal block:', r.meText, 'link absent:', r.meLinkAbsent);
+if (!r.meLinkAbsent) process.exitCode = 1;
 console.log('Style block count:', r.fontsCss.length);
 console.log('Requests issued:', requests.length);
 const externalReqs = requests.filter(u => !u.startsWith('data:') && !u.startsWith('file:'));

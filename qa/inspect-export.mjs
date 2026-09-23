@@ -23,11 +23,11 @@ for (const [name, path, width, height] of [
     heroLoaded: document.querySelector('.hero-portrait img')?.naturalWidth > 0,
     portraitLoaded: document.querySelector('.me-photo img')?.naturalWidth > 0,
     fontsLoaded: document.fonts.check('16px "Golos Text"') && document.fonts.check('16px "Lora"'),
-    personalLink: document.querySelector('.me-link')?.getAttribute('href'),
+    personalLinkAbsent: document.querySelector('.me-link') === null,
     overflow: document.documentElement.scrollWidth > innerWidth,
   }));
   console.log(name, JSON.stringify({ ...result, failed }));
-  if (!result.heroLoaded || !result.portraitLoaded || !result.fontsLoaded || result.overflow || failed.length) process.exitCode = 1;
+  if (!result.heroLoaded || !result.portraitLoaded || !result.fontsLoaded || !result.personalLinkAbsent || result.overflow || failed.length) process.exitCode = 1;
   await page.close();
 }
 await browser.close();
