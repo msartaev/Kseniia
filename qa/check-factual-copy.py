@@ -34,8 +34,10 @@ def check_html(label, html):
     assert not re.search(r"\b(?:zoom|москв\w*|очно|очн\w*|встретиться лично)\b", visible, re.I), label
     assert "три промежуточных созвона и связь в Telegram" in visible, label
     assert "Напишите Ксении в Telegram." in visible, label
-    assert 'href="https://t.me/Rrroxy"' in html, label
-    assert 'href="https://t.me/zozhno_vozmozhno"' in html, label
+    links = re.findall(r'<a\b[^>]*\bhref="([^"]+)"', html)
+    assert "https://t.me/Rrroxy" in links, label
+    assert all(link.startswith("#") or link == "https://t.me/Rrroxy" for link in links), (label, links)
+    assert "t.me/zozhno_vozmozhno" not in html, label
     print("PASS", label)
 
 
@@ -52,4 +54,6 @@ assert "Вопрос — «Как проходит консультация?»" 
 assert "Ответ: «Консультация проходит онлайн.»" in copy
 assert not re.search(r"\b(?:zoom|москв\w*|очно|очн\w*|встретиться лично)\b", copy, re.I)
 assert "три промежуточных созвона и связь в Telegram" in copy
+assert "Telegram · канал" not in copy
+assert "ссылку на канал" not in copy
 print("PASS copy.md")
