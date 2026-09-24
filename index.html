@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ru" class="no-js">
+<html lang="ru">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -273,11 +273,6 @@ a { color: inherit; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition: none !important; animation: none !important; }
 }
-/* Прототип 1: порядок блоков в листе первой встречи на мобильном */
-@media (max-width: 599px) {
-  .sheet .tg-hint { order: 1; }
-  .sheet .what-to-write { order: 3; }
-}
 @media (min-width: 900px) {
   .final-card.tg-final { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); align-items: start; }
   .tg-final .from { grid-column: 1 / -1; }
@@ -330,16 +325,7 @@ a { color: inherit; }
             <a class="btn btn-primary" href="https://t.me/Rrroxy?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D0%9A%D1%81%D0%B5%D0%BD%D0%B8%D1%8F%21%20%D0%AF%20%D1%81%20%D1%81%D0%B0%D0%B9%D1%82%D0%B0%20zozhno.ru.%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%83%D0%B7%D0%BD%D0%B0%D1%82%D1%8C%2C%20%D0%BA%D0%B0%D0%BA%20%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%D0%BD%D0%B0%20%D0%BA%D0%BE%D0%BD%D1%81%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%86%D0%B8%D1%8E." rel="noopener"><img class="tg-mark" src="assets/telegram-logo.svg" alt="" width="22" height="22">Написать Ксении в&nbsp;Telegram</a>
             <a class="link" href="#formats">Все форматы и цены</a>
           </div>
-          <p class="meta tg-hint">Откроется чат Ксении в&nbsp;Telegram. Если приветствие не&nbsp;появилось — скопируйте его ниже.</p>
-          <details class="what-to-write" id="hero-write">
-            <summary>Текст приветствия</summary>
-            <div class="draft">
-  <div class="draft-head"><h3 class="label" id="draft-hero-title">Первое сообщение</h3><button type="button" class="copy-btn" data-copy aria-controls="draft-hero" data-status="copy-hero-status"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="5" y="5" width="9" height="9" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M3 11V3.5A1.5 1.5 0 0 1 4.5 2H11" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>Скопировать</button></div>
-  <p class="draft-text" id="draft-hero" aria-labelledby="draft-hero-title">Здравствуйте, Ксения! Я с сайта zozhno.ru. Хочу узнать, как записаться на консультацию.</p>
-  <p class="meta copy-status" id="copy-hero-status" role="status" aria-live="polite"></p>
-  <p class="meta draft-note">Если хотите, допишите формат: первичная, повторная или «Месяц со мной».</p>
-</div>
-          </details>
+
         </div>
       </div>
     </div>
@@ -373,7 +359,7 @@ a { color: inherit; }
       <ol class="steps">
         <li class="step">
           <h3>Обсуждаем запрос</h3>
-          <p>Напишите в Telegram, какой формат вас интересует. Подходящий формат и время обсудим в переписке. <a class="link" href="#write">Что написать</a></p>
+          <p>Напишите в Telegram, какой формат вас интересует. Подходящий формат и время обсудим в переписке.</p>
         </li>
         <li class="step">
           <h3>Разбираем анкету и рацион</h3>
@@ -420,7 +406,7 @@ a { color: inherit; }
       <div class="formats-after">
         <p class="health-line"><b>Не присылайте сведения о здоровье, диагнозы, анализы и названия лекарств.</b> Сейчас достаточно выбрать формат.</p>
         <a class="btn btn-primary" href="https://t.me/Rrroxy?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D0%9A%D1%81%D0%B5%D0%BD%D0%B8%D1%8F%21%20%D0%AF%20%D1%81%20%D1%81%D0%B0%D0%B9%D1%82%D0%B0%20zozhno.ru.%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%83%D0%B7%D0%BD%D0%B0%D1%82%D1%8C%2C%20%D0%BA%D0%B0%D0%BA%20%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%D0%BD%D0%B0%20%D0%BA%D0%BE%D0%BD%D1%81%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%86%D0%B8%D1%8E." rel="noopener"><img class="tg-mark" src="assets/telegram-logo.svg" alt="" width="22" height="22">Написать Ксении в&nbsp;Telegram</a>
-        <p>Откроется чат Ксении в&nbsp;Telegram. Если приветствие не&nbsp;появилось — <a class="link" href="#write">скопируйте его в&nbsp;конце страницы</a>.</p>
+
       </div>
     </div>
   </section>
@@ -458,16 +444,11 @@ a { color: inherit; }
       </div>
       <div class="write-col">
         <p class="health-line"><b>Не присылайте сведения о здоровье, диагнозы, анализы и названия лекарств.</b> Сейчас достаточно выбрать формат.</p>
-        <div class="draft">
-  <div class="draft-head"><h3 class="label" id="draft-final-title">Первое сообщение</h3><button type="button" class="copy-btn" data-copy aria-controls="draft-final" data-status="copy-final-status"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="5" y="5" width="9" height="9" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M3 11V3.5A1.5 1.5 0 0 1 4.5 2H11" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>Скопировать</button></div>
-  <p class="draft-text" id="draft-final" aria-labelledby="draft-final-title">Здравствуйте, Ксения! Я с сайта zozhno.ru. Хочу узнать, как записаться на консультацию.</p>
-  <p class="meta copy-status" id="copy-final-status" role="status" aria-live="polite"></p>
-  <p class="meta draft-note">Если хотите, допишите формат: первичная, повторная или «Месяц со мной».</p>
-</div>
+
         <div class="action">
           <a class="btn btn-primary" href="https://t.me/Rrroxy?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D0%9A%D1%81%D0%B5%D0%BD%D0%B8%D1%8F%21%20%D0%AF%20%D1%81%20%D1%81%D0%B0%D0%B9%D1%82%D0%B0%20zozhno.ru.%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%83%D0%B7%D0%BD%D0%B0%D1%82%D1%8C%2C%20%D0%BA%D0%B0%D0%BA%20%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%D0%BD%D0%B0%20%D0%BA%D0%BE%D0%BD%D1%81%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%86%D0%B8%D1%8E." rel="noopener"><img class="tg-mark" src="assets/telegram-logo.svg" alt="" width="22" height="22">Написать Ксении в&nbsp;Telegram</a>
         </div>
-        <p class="meta tg-hint">Откроется чат Ксении в&nbsp;Telegram. Если приветствие не&nbsp;появилось — скопируйте его выше.</p>
+
         <p class="meta">Нажатие кнопки ничего не бронирует — запись обсуждается в переписке в Telegram.</p>
       </div>
     </div>
@@ -486,6 +467,6 @@ a { color: inherit; }
     </nav>
   </div>
 </footer>
-<script src="assets/proto.js"></script>
+
 </body>
 </html>
