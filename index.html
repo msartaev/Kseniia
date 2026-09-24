@@ -285,6 +285,37 @@ a { color: inherit; }
 .tg-final .write-col .action { margin-top: var(--s-5); }
 .tg-final .write-col .btn-primary { width: 100%; }
 </style>
+<style id="warm-a1">
+/* ── MY-64 · A1 «бережная»: та же композиция A, мягче голос ──
+   Почти чёрный #1f1c15 → тёплый тёмно-коричневый; вес заголовков 700 → 600,
+   трекинг мягче; жёсткие тёмные правила → песочные; полоса предупреждения — медовая.
+   Контент, структура, фото, контакт, акцент и цена не меняются. */
+:root {
+  --ink: #3b2f25;          /* 12.0:1 на --bg, 11.0:1 на --surface */
+  --ink-2: #5b4d40;        /*  7.5:1 на --bg,  6.9:1 на --surface */
+  --ink-3: #6b5d4e;        /*  5.9:1 на --bg,  5.4:1 на --surface */
+  --on-accent: #2e241b;    /*  9.0:1 на --accent */
+  --line-strong: #b39a6c;  /* декоративные правила, не текст */
+  --rule-note: #d9a93a;    /* полоса у предупреждения о здоровье */
+  --focus: #3b2f25;        /* 12.0:1 к фону — фокус остаётся заметным */
+  --t-h1: clamp(2.5rem, 1.2rem + 5.6vw, 5.25rem);   /* 40 → 84 */
+}
+.h1 { font-weight: 600; letter-spacing: -0.025em; line-height: 1.02; }
+.h2 { font-weight: 600; letter-spacing: -0.018em; }
+.ease-text .h2 { letter-spacing: -0.022em; line-height: 1.06; }
+.logo b { font-weight: 600; }
+.price, .cost .price { font-weight: 600; }
+.step::before { font-weight: 500; color: var(--ink-3); }
+.hero-body .lead { margin-top: var(--s-5); }
+.sheet { border-top-width: 1px; border-top-color: var(--line-strong); border-radius: var(--r-media); }
+.health-line, .health-box { border-left-color: var(--rule-note); }
+.health-line b { font-weight: 600; }
+:focus-visible { outline-width: 2px; outline-offset: 3px; }
+@media (min-width: 900px) {
+  .step { border-top-width: 1px; }
+  .sheet { margin-top: var(--s-8); }
+}
+</style>
 </head>
 <body>
 <a class="skip" href="#main">К содержанию</a>
@@ -322,7 +353,7 @@ a { color: inherit; }
           <p class="sheet-list meta">Анкета до встречи, разбор рациона и привычек. После встречи остаётся письменный план питания и конкретные следующие шаги.</p>
           <p class="health-line"><b>Не присылайте сведения о здоровье, диагнозы, анализы и названия лекарств.</b> Сейчас достаточно выбрать формат.</p>
           <div class="action">
-            <a class="btn btn-primary" href="https://t.me/Rrroxy?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D0%9A%D1%81%D0%B5%D0%BD%D0%B8%D1%8F%21%20%D0%AF%20%D1%81%20%D1%81%D0%B0%D0%B9%D1%82%D0%B0%20zozhno.ru.%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%83%D0%B7%D0%BD%D0%B0%D1%82%D1%8C%2C%20%D0%BA%D0%B0%D0%BA%20%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%D0%BD%D0%B0%20%D0%BA%D0%BE%D0%BD%D1%81%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%86%D0%B8%D1%8E." rel="noopener"><img class="tg-mark" src="assets/telegram-logo.svg" alt="" width="22" height="22">Написать Ксении в&nbsp;Telegram</a>
+            <a class="btn btn-primary" href="https://t.me/Rrroxy?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D0%9A%D1%81%D0%B5%D0%BD%D0%B8%D1%8F%21%20%D0%AF%20%D1%81%20%D1%81%D0%B0%D0%B9%D1%82%D0%B0%20zozhno.ru.%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%83%D0%B7%D0%BD%D0%B0%D1%82%D1%8C%2C%20%D0%BA%D0%B0%D0%BA%20%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%D0%BD%D0%B0%20%D0%BA%D0%BE%D0%BD%D1%81%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%86%D0%B8%D1%8E." rel="noopener"><img class="tg-mark" src="assets/telegram-logo.svg" alt="" width="22" height="22">Написать мне в&nbsp;Telegram</a>
             <a class="link" href="#formats">Все форматы и цены</a>
           </div>
 
@@ -340,7 +371,7 @@ a { color: inherit; }
         <div class="prose">
           <p>Общих рекомендаций вокруг достаточно. Личный разбор начинается с другого: с того, как вы едите и живёте сейчас — какой у вас рацион, какие привычки и какой режим дня.</p>
           <p>На встрече проходим по вашей анкете и вашему рациону. После неё у вас остаётся письменный план питания, собранный под вашу ситуацию.</p>
-          <p class="note">Работа со взрослыми от 18&nbsp;лет. Консультации проходят онлайн.</p>
+          <p class="note">Я работаю со взрослыми от 18&nbsp;лет. Консультации проходят онлайн.</p>
         </div>
       </div>
       <figure class="ease-photo">
@@ -393,7 +424,7 @@ a { color: inherit; }
           </tr>
           <tr>
             <th scope="row"><span class="fmt-name">Повторная консультация</span><span class="fmt-time meta"><span class="nbr">45–60&nbsp;минут</span> · онлайн</span></th>
-            <td class="what">Для тех, кто уже работал с Ксенией: разбираем, что изменилось, корректируем рацион и отвечаем на накопившиеся вопросы.</td>
+            <td class="what">Если мы уже работали: разбираем, что изменилось, корректируем рацион, и я отвечаю на накопившиеся вопросы.</td>
             <td class="cost"><span class="price">5&nbsp;000&nbsp;₽</span></td>
           </tr>
           <tr>
@@ -405,7 +436,7 @@ a { color: inherit; }
       </table>
       <div class="formats-after">
         <p class="health-line"><b>Не присылайте сведения о здоровье, диагнозы, анализы и названия лекарств.</b> Сейчас достаточно выбрать формат.</p>
-        <a class="btn btn-primary" href="https://t.me/Rrroxy?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D0%9A%D1%81%D0%B5%D0%BD%D0%B8%D1%8F%21%20%D0%AF%20%D1%81%20%D1%81%D0%B0%D0%B9%D1%82%D0%B0%20zozhno.ru.%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%83%D0%B7%D0%BD%D0%B0%D1%82%D1%8C%2C%20%D0%BA%D0%B0%D0%BA%20%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%D0%BD%D0%B0%20%D0%BA%D0%BE%D0%BD%D1%81%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%86%D0%B8%D1%8E." rel="noopener"><img class="tg-mark" src="assets/telegram-logo.svg" alt="" width="22" height="22">Написать Ксении в&nbsp;Telegram</a>
+        <a class="btn btn-primary" href="https://t.me/Rrroxy?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D0%9A%D1%81%D0%B5%D0%BD%D0%B8%D1%8F%21%20%D0%AF%20%D1%81%20%D1%81%D0%B0%D0%B9%D1%82%D0%B0%20zozhno.ru.%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%83%D0%B7%D0%BD%D0%B0%D1%82%D1%8C%2C%20%D0%BA%D0%B0%D0%BA%20%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%D0%BD%D0%B0%20%D0%BA%D0%BE%D0%BD%D1%81%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%86%D0%B8%D1%8E." rel="noopener"><img class="tg-mark" src="assets/telegram-logo.svg" alt="" width="22" height="22">Написать мне в&nbsp;Telegram</a>
 
       </div>
     </div>
@@ -421,10 +452,10 @@ a { color: inherit; }
       <div>
         <div class="faq-list">
           <details><summary>Как проходит консультация?</summary><p>Консультация проходит онлайн.</p></details>
-          <details><summary>Это строгая диета?</summary><p>Нет. Задача — выстроить стиль питания, который подходит вашему образу жизни и который вы сможете держать без голодания.</p></details>
+          <details><summary>Это строгая диета?</summary><p>Нет. Моя задача — выстроить стиль питания, который подходит вашему образу жизни и который вы сможете держать без голодания.</p></details>
           <details><summary>С кем вы работаете?</summary><p>Со взрослыми от 18 лет.</p></details>
           <details><summary>Чем консультация отличается от сопровождения?</summary><p>Первичная консультация — отдельная встреча и письменный план. «Месяц со мной» — формат на четыре недели: стартовый созвон, план с еженедельной корректировкой, три промежуточных созвона и связь в Telegram.</p></details>
-          <details><summary>Как записаться?</summary><p>Напишите Ксении в Telegram. Достаточно написать, какой формат вас интересует. Не присылайте сведения о здоровье, диагнозы, анализы и названия лекарств. В ответ Ксения скажет, подходит ли вам консультация, и предложит формат и время.</p></details>
+          <details><summary>Как записаться?</summary><p>Напишите мне в Telegram. Достаточно написать, какой формат вас интересует. Не присылайте сведения о здоровье, диагнозы, анализы и названия лекарств. В ответ я скажу, подходит ли вам консультация, и предложу формат и время.</p></details>
         </div>
         <p class="legal">Консультации по питанию не заменяют медицинскую диагностику и лечение. Вопросы назначений и их изменения — к лечащему врачу.</p>
       </div>
@@ -446,10 +477,10 @@ a { color: inherit; }
         <p class="health-line"><b>Не присылайте сведения о здоровье, диагнозы, анализы и названия лекарств.</b> Сейчас достаточно выбрать формат.</p>
 
         <div class="action">
-          <a class="btn btn-primary" href="https://t.me/Rrroxy?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D0%9A%D1%81%D0%B5%D0%BD%D0%B8%D1%8F%21%20%D0%AF%20%D1%81%20%D1%81%D0%B0%D0%B9%D1%82%D0%B0%20zozhno.ru.%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%83%D0%B7%D0%BD%D0%B0%D1%82%D1%8C%2C%20%D0%BA%D0%B0%D0%BA%20%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%D0%BD%D0%B0%20%D0%BA%D0%BE%D0%BD%D1%81%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%86%D0%B8%D1%8E." rel="noopener"><img class="tg-mark" src="assets/telegram-logo.svg" alt="" width="22" height="22">Написать Ксении в&nbsp;Telegram</a>
+          <a class="btn btn-primary" href="https://t.me/Rrroxy?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D0%9A%D1%81%D0%B5%D0%BD%D0%B8%D1%8F%21%20%D0%AF%20%D1%81%20%D1%81%D0%B0%D0%B9%D1%82%D0%B0%20zozhno.ru.%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%83%D0%B7%D0%BD%D0%B0%D1%82%D1%8C%2C%20%D0%BA%D0%B0%D0%BA%20%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%D0%BD%D0%B0%20%D0%BA%D0%BE%D0%BD%D1%81%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%86%D0%B8%D1%8E." rel="noopener"><img class="tg-mark" src="assets/telegram-logo.svg" alt="" width="22" height="22">Написать мне в&nbsp;Telegram</a>
         </div>
 
-        <p class="meta">Нажатие кнопки ничего не бронирует — запись обсуждается в переписке в Telegram.</p>
+        <p class="meta">Нажатие кнопки ничего не бронирует — о записи договоримся в переписке в Telegram.</p>
       </div>
     </div>
   </section>
