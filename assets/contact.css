@@ -1,0 +1,190 @@
+/* ── Контакт: общие элементы прототипов MY-50 поверх токенов варианта A ──
+   Новых цветов нет, кроме официального знака Telegram (файл Telegram Press)
+   и одного тона ошибки --danger (контраст 7.2:1 на --paper, 6.3:1 на --danger-bg). */
+:root {
+  --danger: #a3261b;
+  --danger-bg: #fbeae6;
+  --ok-line: #1f1c15;
+}
+
+/* Знак Telegram всегда рядом с видимым словом «Telegram» */
+.tg-mark { width: 22px; height: 22px; flex: none; }
+.btn .tg-mark { margin-left: -4px; }
+.nav a .tg-mark, .foot a .tg-mark { width: 18px; height: 18px; margin-right: 6px; }
+.tg-hint { margin-top: var(--s-3); }
+
+/* ── «Что написать»: черновик первого сообщения как лист бумаги (приём .sheet) ── */
+.draft {
+  background: var(--paper); border: 1px solid var(--line); border-top: 2px solid var(--line-strong);
+  border-radius: 0 0 var(--r-control) var(--r-control); padding: var(--s-4) var(--s-5) var(--s-5);
+}
+.draft-head { display: flex; justify-content: space-between; align-items: center; gap: var(--s-3); flex-wrap: wrap; }
+.draft-text {
+  margin-top: var(--s-3); font-size: var(--t-body); line-height: 1.55; color: var(--ink);
+  white-space: pre-line; user-select: all; -webkit-user-select: all;
+}
+.draft-text .gap { color: var(--ink-3); }
+.draft-note { margin-top: var(--s-3); padding-top: var(--s-3); border-top: 1px solid var(--line); }
+.copy-btn {
+  display: inline-flex; align-items: center; gap: var(--s-2); min-height: 44px; padding: 0 var(--s-4);
+  border: 1px solid var(--line-strong); border-radius: var(--r-control); background: transparent;
+  font: 600 0.9375rem/1 var(--font); color: var(--ink); cursor: pointer;
+}
+.copy-btn:hover { background: var(--surface); }
+.copy-btn svg { width: 16px; height: 16px; }
+.copy-status { min-height: 1.45em; margin-top: var(--s-2); }
+.no-js .copy-btn { display: none; }
+
+/* Раскрывашка «Что написать» в первом экране: нативный details, работает без JS */
+.what-to-write { margin-top: var(--s-4); border-top: 1px solid var(--line); }
+.what-to-write > summary {
+  list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: var(--s-3);
+  min-height: 44px; padding-top: var(--s-2); font-weight: 600; font-size: 0.9375rem;
+}
+.what-to-write > summary::-webkit-details-marker { display: none; }
+.what-to-write > summary::after {
+  content: ""; width: 9px; height: 9px; margin-right: 4px; flex: none;
+  border-right: 2px solid var(--ink); border-bottom: 2px solid var(--ink); transform: translateY(-2px) rotate(45deg);
+}
+.what-to-write[open] > summary::after { transform: translateY(2px) rotate(-135deg); }
+.what-to-write .draft { margin-top: var(--s-3); border-top-width: 1px; border-radius: var(--r-control); background: var(--bg); }
+
+/* ── «Нет Telegram?» — честный пробел, а не выдуманный контакт ── */
+.fallback { margin-top: var(--s-5); padding-top: var(--s-4); border-top: 1px solid var(--line); max-width: 46ch; }
+.fallback b { display: block; font-weight: 600; }
+.placeholder {
+  display: inline-block; margin-top: var(--s-2); padding: 2px var(--s-2);
+  border: 1px dashed var(--ink-3); border-radius: 4px; background: var(--bg);
+  font-size: var(--t-meta); color: var(--ink-2); font-weight: 500;
+}
+
+/* Метка прототипа: видна, но не спорит с композицией */
+.proto-flag {
+  background: var(--ink); color: var(--bg); font-size: var(--t-meta); text-align: center;
+  padding: 6px var(--gutter); line-height: 1.4;
+}
+
+/* ── Форма (прототип 2) ── */
+.contact-grid { display: grid; gap: var(--s-7); }
+.path-title { font-size: var(--t-lead); font-weight: 600; line-height: 1.3; }
+.path-sub { margin-top: var(--s-2); color: var(--ink-2); max-width: 44ch; }
+.cform { background: var(--paper); border: 1px solid var(--line); border-top: 2px solid var(--line-strong); border-radius: 0 0 var(--r-control) var(--r-control); padding: var(--s-5); }
+.demo-banner {
+  display: flex; gap: var(--s-2); align-items: flex-start; padding: var(--s-3) var(--s-4);
+  background: var(--ink); color: var(--bg); border-radius: var(--r-control); font-size: var(--t-meta); line-height: 1.4; font-weight: 500;
+}
+.field { margin-top: var(--s-5); }
+.field > label, .field legend { display: block; font-weight: 600; font-size: 0.9375rem; padding: 0; }
+.field .opt { font-weight: 400; color: var(--ink-3); }
+.field .hint { margin-top: 2px; }
+.input {
+  display: block; width: 100%; margin-top: var(--s-2); min-height: var(--control-h); padding: 0 var(--s-4);
+  border: 1px solid var(--ink-3); border-radius: var(--r-control); background: #fff;
+  font: 400 var(--t-body)/1.3 var(--font); color: var(--ink);
+}
+.input:focus-visible { outline: 3px solid var(--focus); outline-offset: 1px; border-color: var(--ink); }
+.input[aria-invalid="true"] { border: 2px solid var(--danger); }
+.input:disabled, .chips input:disabled + span { opacity: .6; }
+fieldset.field { border: 0; margin-inline: 0; padding: 0; min-width: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: var(--s-2); margin-top: var(--s-2); }
+.chips label { position: relative; }
+.chips input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+.chips span {
+  display: inline-flex; align-items: center; min-height: 44px; padding: 0 var(--s-4);
+  border: 1px solid var(--line-strong); border-radius: 999px; font-size: 0.9375rem; font-weight: 500; background: #fff;
+}
+.chips input:checked + span { background: var(--ink); color: var(--bg); }
+.chips input:focus-visible + span { outline: 2px solid var(--focus); outline-offset: 3px; }
+.health {
+  margin-top: var(--s-5); padding: var(--s-3) var(--s-4); background: var(--surface); border-radius: var(--r-control);
+  font-size: var(--t-meta); line-height: 1.45; color: var(--ink);
+}
+.check { display: grid; grid-template-columns: 24px 1fr; gap: var(--s-3); align-items: start; margin-top: var(--s-5); font-size: 0.9375rem; line-height: 1.45; }
+.check input { width: 22px; height: 22px; margin: 1px 0 0; accent-color: var(--ink); }
+.check input:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; }
+.check input[aria-invalid="true"] { outline: 2px solid var(--danger); outline-offset: 2px; }
+.draft-tag { display: inline-block; font-size: 0.75rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--ink-3); }
+.field-error { display: none; margin-top: var(--s-2); color: var(--danger); font-weight: 600; font-size: 0.9375rem; }
+.field-error.on { display: block; }
+.after-send { margin-top: var(--s-5); }
+.cform .btn-primary { margin-top: var(--s-5); width: 100%; border: 0; cursor: pointer; }
+.cform .btn-primary[disabled] { background: var(--line); color: var(--ink-2); cursor: progress; }
+
+.error-summary {
+  margin-top: var(--s-5); padding: var(--s-4); border: 2px solid var(--danger); border-radius: var(--r-control); background: var(--danger-bg);
+}
+.error-summary:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+.error-summary h3 { font-size: 1rem; font-weight: 700; }
+.error-summary ul { margin: var(--s-2) 0 0; padding-left: 1.2em; }
+.error-summary a { color: var(--danger); font-weight: 600; }
+
+.result { margin-top: var(--s-5); padding: var(--s-4); border-radius: var(--r-control); border: 1px solid var(--line-strong); background: var(--bg); }
+.result:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+.result h3 { font-size: 1.0625rem; font-weight: 700; line-height: 1.35; }
+.result p { margin-top: var(--s-2); color: var(--ink-2); font-size: 0.9375rem; }
+.result .action { margin-top: var(--s-3); }
+.result.is-error { border: 2px solid var(--danger); background: var(--danger-bg); }
+.result.is-demo-done { border: 2px dashed var(--ink); }
+.result .btn-primary { width: auto; margin-top: 0; }
+.retry { min-height: 44px; }
+.spinner { width: 16px; height: 16px; border: 2px solid currentColor; border-right-color: transparent; border-radius: 50%; animation: spin .8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.nojs-form { display: none; }
+.no-js .nojs-form { display: block; }
+.no-js .cform-live { display: none; }
+
+@media (min-width: 900px) {
+  .contact-grid { grid-template-columns: 5fr 6fr; gap: var(--s-8); align-items: start; }
+}
+@media (max-width: 599px) {
+  .draft, .cform { padding: var(--s-4); }
+  .copy-btn { width: 100%; justify-content: center; }
+}
+@media (prefers-reduced-motion: reduce) { .spinner { animation: none; border-right-color: currentColor; } }
+
+/* ── Панель проверяющего (не часть сайта) ── */
+.demo-panel { position: fixed; right: 12px; bottom: 12px; z-index: 50; max-width: min(320px, calc(100vw - 24px)); font: 500 0.875rem/1.35 var(--font); }
+.demo-toggle, .demo-list button { font: inherit; cursor: pointer; border-radius: 6px; }
+.demo-toggle { display: block; margin-left: auto; min-height: 40px; padding: 0 14px; background: #2d2a86; color: #fff; border: 2px solid #fff; box-shadow: 0 2px 10px rgba(0,0,0,.25); }
+.demo-list { margin-bottom: 8px; padding: 10px; background: #fff; border: 2px solid #2d2a86; border-radius: 8px; box-shadow: 0 4px 18px rgba(0,0,0,.2); display: grid; gap: 6px; max-height: 70vh; overflow: auto; }
+.demo-list[hidden] { display: none; }
+.demo-list button { text-align: left; min-height: 36px; padding: 4px 10px; border: 1px solid #c9c7e8; background: #f4f4fb; color: #1b1a3a; }
+.demo-list button[aria-pressed="true"] { background: #2d2a86; color: #fff; }
+.demo-cap { font-size: 0.8125rem; color: #3a3960; }
+.demo-list a { color: #2d2a86; }
+.demo-panel { display: flex; flex-direction: column-reverse; }
+.copy-status:empty { min-height: 0; margin: 0; }
+.cform .btn-primary[aria-disabled="true"] { background: var(--line); color: var(--ink-2); cursor: progress; }
+.result .action { gap: var(--s-3); }
+.result .placeholder { margin-top: 0; }
+.placeholder { margin-top: 0; }
+.fallback .placeholder { margin-top: var(--s-2); }
+.result .action > .btn-primary, .result .action > .retry { width: 100%; justify-content: center; white-space: nowrap; }
+@media (min-width: 600px) { .result .action > .btn-primary, .result .action > .retry { width: auto; } }
+
+/* ── R3: граница сведений о здоровье — до каждого первого действия, вне details, видна без JS ── */
+.health-line {
+  margin-top: var(--s-4); padding-left: var(--s-3); border-left: 3px solid var(--ink);
+  font-size: var(--t-meta); line-height: 1.45; color: var(--ink); max-width: 52ch;
+}
+.health-line b { font-weight: 600; }
+.health-line + .action { margin-top: var(--s-3); }
+.health-box { margin-top: var(--s-4); padding: var(--s-3) var(--s-4); border-left: 3px solid var(--ink); background: var(--surface); border-radius: 0 var(--r-control) var(--r-control) 0; max-width: none; }
+.formats-after .health-line { grid-column: 1 / -1; margin-top: 0; }
+.write-col > .health-line:first-child { margin: 0 0 var(--s-4); }
+@media (max-width: 599px) { .sheet .health-line { order: 1; } }
+
+/* ── R5: разные заголовки блока формы с JS и без ── */
+.nojs-only { display: none; }
+.no-js .nojs-only { display: block; }
+.no-js .js-only { display: none; }
+/* R6: у кнопок повтора свой класс — обработчик копирования их не видит */
+.ghost-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--s-2); min-height: 44px; padding: 0 var(--s-4);
+  border: 1px solid var(--line-strong); border-radius: var(--r-control); background: transparent;
+  font: 600 0.9375rem/1 var(--font); color: var(--ink); cursor: pointer;
+}
+.ghost-btn:hover { background: var(--paper); }
+.result .action > .ghost-btn { width: 100%; }
+@media (min-width: 600px) { .result .action > .ghost-btn { width: auto; } }
