@@ -72,6 +72,7 @@ test('page discloses the purpose and has explicit accept, decline, and revisit c
   assert.match(html, /id="stats-allow"/);
   assert.match(html, /id="stats-deny"/);
   assert.match(html, /id="stats-settings"[^>]*hidden/);
+  assert.match(html, /id="stats-consent-title">Файлы cookie/);
   assert.match(html, /Яндекс Метрик/);
   assert.match(html, /assets\/metrics\.js/);
   assert.doesNotMatch(html, /mc\.yandex\.ru\/watch/);
